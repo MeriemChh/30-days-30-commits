@@ -8,6 +8,59 @@
   overflow: hidden;
   background-color: black;
 }
+.hero::after{
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.432);
+  z-index: 2;
+  position: absolute;
+}
+
+/*
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;     
+  left: 0;
+  width: 0;
+  height: 0;
+  border-right: 100vw solid transparent; 
+  border-bottom: 100px solid rgb(0, 0, 0);        
+  z-index: 1;
+  pointer-events: none;
+  border-top-left-radius: 10px 2px;
+    border-top-right-radius: 10px 2px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  width: 150px;
+  height: 150px;
+  background: url("/golden-best.png") no-repeat center;
+  background-size: contain;
+  z-index: 2;
+
+  transform: rotate(-10deg);
+  transform-origin: center;
+  animation: spin 3s linear infinite;
+  
+}
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(10deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+*/
 
 .hero-video {
   position: absolute;
@@ -19,21 +72,42 @@
   z-index: 0;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.3;
-  z-index: 1;
-}
-
 .hero-content {
-  position: relative;
-  z-index: 2; 
+  font-family: "Cinzel Decorative";
+  z-index: 5; 
   text-align: center;
   color: white;
+  padding: 50px;
+
+}
+.hero-content h1{
+  margin-top: 20px;
+  text-align: left;
+
+}
+.description{
+  margin-top: 20px;
+  text-align: left;
+
+}
+.hero-button {
+  font-family:"Cinzel Decorative";
+  margin-top: 50px;
+  padding: 12px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  background: linear-gradient(135deg, #3a1c0f, #5c2c1f); 
+  color: #f5e6d3;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.hero-button:hover {
+  background: linear-gradient(135deg, #5c2c1f, #3a1c0f);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.45);
 }

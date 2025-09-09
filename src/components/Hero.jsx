@@ -4,6 +4,7 @@ import "../styles/Hero.css";
 export default function Hero() {
   return (
 <div className="hero">
+  {/** */}
   <video
     autoPlay
     loop
@@ -15,8 +16,13 @@ export default function Hero() {
   </video>
 
   <div className="hero-content">
-    <h1>30 Days, 30 Commits</h1>
+    <h1>Welcome to Our Store</h1>
+    <p className="description">
+      A modern spot for treats, flavors, and everyday delights. Your sweet journey starts here.  
+    </p>
+    <button className="hero-button">Order Now</button>
   </div>
+
 </div>
 
   );
