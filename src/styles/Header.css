@@ -32,7 +32,7 @@
   width: 100%;
 }
 .close{
-  position: absolute;
+  position: fixed;
   top: 30px;
   left: 30px;
   cursor: pointer;  

@@ -1,0 +1,87 @@
+.login {
+  font-family: "Cormorant Garamond";
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/background.jpg");
+  background-size: cover;     
+  background-position: center; 
+
+}
+
+@media (min-width: 768px) {
+  .login {
+    background-image: url("/background-desktop.jpg");
+  }
+}
+
+.login-box {
+  position: fixed;
+  width: 100%;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.473);
+  backdrop-filter: blur(3px) saturate(180%);
+  -webkit-backdrop-filter: blur(3px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease forwards;
+}
+
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.login-input {
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.login-button {
+  font-family:"Cormorant Garamond";
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3a1c0f, #5c2c1f); 
+  color: #f5e6d3;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #5c2c1f, #3a1c0f);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.45);
+}
+
+.login-error {
+  color: red;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+}
