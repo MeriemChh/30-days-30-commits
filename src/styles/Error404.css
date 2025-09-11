@@ -1,0 +1,74 @@
+.error-page {
+  height: 100dvh;
+  background: url("/cookie.jpg") no-repeat center center / cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fffefd;
+  font-family: "Creepster", cursive;
+  padding: 20px;
+}
+
+.error-content{
+  position: fixed;
+  width: 100%;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.473);
+  backdrop-filter: blur(3px) saturate(180%);
+  -webkit-backdrop-filter: blur(3px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease forwards;
+
+}
+
+.error-page h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #11ad11, #07a514);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.082);
+
+  background-clip: text; 
+  color: transparent;   
+    margin-bottom: 10px;
+}
+
+.error-page p {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #11ad11, #07a514);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.329);
+ margin-bottom: 30px;
+}
+
+.choco-btn {
+  background: linear-gradient(135deg, #240202, #8b0000);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-family: "Creepster", cursive;
+  font-weight: 400;
+  border-radius: 8px;
+  cursor: pointer;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+
+.choco-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, #a00000, #5c0000);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+  color: #ffcccc;
+}
+

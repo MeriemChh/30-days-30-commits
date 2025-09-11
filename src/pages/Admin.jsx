@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import Dashboard from "../components/Dashboard";
 
 
 export default function Admin() {
@@ -15,7 +16,7 @@ export default function Admin() {
   const renderComponent = () => {
     switch (view) {
       case "dashboard": return <h2>dashboard</h2>;
-      default: return <h2>dashboard</h2>;
+      default: return <Dashboard/>;
     }
   };
   useEffect(() => {
