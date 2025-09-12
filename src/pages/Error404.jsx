@@ -6,12 +6,15 @@ export default function Error404() {
 
   return (
     <div className="error-page">
+      <div className="error-overlay">
       <div className="error-content">
-      <h1>Oh oh </h1>
-      <p>You wondered way too far..</p>
+
+      <h1>Oh oh! little cake lost the frosting</h1>
+      <p>Cookie knows a place..</p>
       <button onClick={() => navigate("/")} className="choco-btn">
-        BACK TO SAFETY
+        Back To Counter
       </button>
+      </div>
       </div>
     </div>
   );

@@ -1,0 +1,107 @@
+.create {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: white;
+  padding: 2rem;
+  overflow: hidden;
+overflow-y: scroll;
+
+}
+.create h3{
+    margin: 20px;
+    color: #200404;
+}
+
+.create-form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: white;
+  animation: fadeIn 0.6s ease;
+}
+
+.create h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff5f6d, #ffc371);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.create-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  font-size: 0.85rem;
+}
+
+.create-form input,
+.create-form select,
+.create-form textarea {
+  padding: 0.9rem;
+  border: none;
+  border-bottom: 1px solid #200404 ;
+  font-size: 1rem;
+  border-radius: 8px 8px 0px 0px ;
+
+  background: rgba(202, 116, 17, 0.048);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.create-form input:focus,
+.create-form select:focus,
+.create-form textarea:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.file-upload {
+    border: none !important ;
+    background-color: white !important;
+}
+
+.submit-btn {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3a1c0f, #5c2c1f); 
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+background: linear-gradient(135deg, #5c2c1f, #3a1c0f);
+  transform: translateY(-3px);
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .create-form {
+    padding: 1.5rem;
+  }
+}

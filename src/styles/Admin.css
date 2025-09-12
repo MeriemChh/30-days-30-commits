@@ -1,6 +1,6 @@
 .admin{
   width: 100%;
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,8 +51,8 @@
 }
 
 .main {
-  flex: 1;
-  padding: 2rem;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
   position: relative;
 }
@@ -66,17 +66,22 @@
   padding: 0.6rem 1rem;
   border-radius: 50%;
   font-size: 1.5rem;
+  background-color: #ffffff;
   color: #000000;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: 0.2s ease;
 }
+.glass-menu-btn:active{
+  background-color: #e5e7eb;
+}
 
 .content {
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
 }
 
 

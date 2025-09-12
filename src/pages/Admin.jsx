@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import Dashboard from "../components/Dashboard";
+import Create from "../components/Create";
 
 
 export default function Admin() {
@@ -16,6 +17,7 @@ export default function Admin() {
   const renderComponent = () => {
     switch (view) {
       case "dashboard": return <h2>dashboard</h2>;
+      case "create": return <Create/>;
       default: return <Dashboard/>;
     }
   };
@@ -61,6 +63,7 @@ if (loading) {
         <nav>
           <button onClick={() => navigate("/")} className="nav-link">Home</button>
           <button onClick={() => setView("dashboard")} className="nav-link">Dashboard</button>
+          <button onClick={() => setView("create")} className="nav-link">Create</button>
         </nav>
         
         <nav>
