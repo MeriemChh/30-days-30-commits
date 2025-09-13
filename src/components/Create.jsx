@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Create.css";
+import Preview from "./Preview";
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -27,66 +28,75 @@ export default function Create() {
   return (
     <div className="create">
       <h3>Add New Product</h3>
-      <form onSubmit={handleSubmit} className="create-form">
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-        </label>
+      <div className="create-container">
+        <form onSubmit={handleSubmit} className="create-form">
+          <label>
+            Name
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-        <label>
-          Price (DA)
-          <input
-            type="number"
-            name="price"
-            value={form.price}
-            onChange={handleChange}
-            required
-          />
-        </label>
+          <label>
+            Price (DA)
+            <input
+              type="number"
+              name="price"
+              value={form.price}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-        <label>
-          Category
-          <select
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-          >
-            <option value="cake">Cake</option>
-            <option value="service">Service</option>
-            <option value="other">Other</option>
-          </select>
-        </label>
+          <label>
+            Category
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleChange}
+            >
+              <option value="cake">Cake</option>
+              <option value="service">Service</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
 
-        <label>
-          Description
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Description
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+            />
+          </label>
 
-        <label >
-          Upload Image
-          <input
-          className="file-upload"
-            type="file"
-            accept="image/*"
-            name="image"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Upload Image
+            <input
+              className="file-upload"
+              type="file"
+              accept="image/*"
+              name="image"
+              onChange={handleChange}
+            />
+          </label>
 
-        <button type="submit" className="submit-btn">
-          Post
-        </button>
-      </form>
+
+          <button type="submit" className="submit-btn">
+            Post
+          </button>
+        </form>
+       {/* Preview component */}
+       <div className="preview-container">
+        <Preview form={form} />
+       </div>
+        
+
+      </div>
     </div>
   );
 }

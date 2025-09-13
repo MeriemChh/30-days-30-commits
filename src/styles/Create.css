@@ -5,11 +5,27 @@
   align-items: center;
   flex-direction: column;
   background: white;
-  padding: 2rem;
   overflow: hidden;
-overflow-y: scroll;
+  overflow-y: scroll;
+}
+
+.create-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 }
+
+.preview-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
 .create h3{
     margin: 20px;
     color: #200404;
@@ -17,7 +33,7 @@ overflow-y: scroll;
 
 .create-form {
   width: 100%;
-  max-width: 480px;
+  max-width: 600px ;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -100,8 +116,10 @@ background: linear-gradient(135deg, #5c2c1f, #3a1c0f);
   }
 }
 
+
 @media (max-width: 768px) {
   .create-form {
     padding: 1.5rem;
   }
+
 }
