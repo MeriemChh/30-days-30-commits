@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import "../styles/Create.css";
 import Preview from "./Preview";
 
@@ -10,6 +12,7 @@ export default function Create() {
     description: "",
     image: null,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -19,10 +22,62 @@ export default function Create() {
     }));
   };
 
-  const handleSubmit = (e) => {
+const uploadToCloudinary = async (file) => {
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+
+  const data = new FormData();
+  data.append("file", file);
+  data.append("upload_preset", uploadPreset);
+  data.append("folder", "cakestore");
+
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error?.message || "Cloudinary upload failed");
+  return json.secure_url; 
+};
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("New item:", form);
-    alert("✅ Product created (check console)");
+    setLoading(true);
+    
+    try {
+      let imageUrl = "";
+      if (form.image) {
+        imageUrl = await uploadToCloudinary(form.image);
+      }
+
+      await addDoc(collection(db, "products"), {
+        name: form.name,
+        price: Number(form.price),
+        category: form.category,
+        description: form.description,
+        imageUrl,
+        createdAt: new Date(),
+      });
+
+      alert("Product saved successfully!");
+      setForm({
+        name: "",
+        price: "",
+        category: "cake",
+        description: "",
+        image: null,
+      });
+    } catch (err) {
+      console.error("Error saving product:", err);
+      alert("Failed to save product.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -85,17 +140,15 @@ export default function Create() {
             />
           </label>
 
-
-          <button type="submit" className="submit-btn">
-            Post
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Posting..." : "Post"}
           </button>
         </form>
-       {/* Preview component */}
-       <div className="preview-container">
-        <Preview form={form} />
-       </div>
-        
 
+        {/* Preview component */}
+        <div className="preview-container">
+          <Preview form={form} />
+        </div>
       </div>
     </div>
   );

@@ -25,6 +25,8 @@ export default function Header() {
             <li>Home</li>
             <li>About</li>
             <li>Contact</li>
+            <li onClick={() =>  navigate("/admin")}>Login</li>
+
           </ul>
 
           <div className="menu" onClick={toggleMobileMenu}>

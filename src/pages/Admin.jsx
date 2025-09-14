@@ -16,9 +16,9 @@ export default function Admin() {
 
   const renderComponent = () => {
     switch (view) {
-      case "dashboard": return <h2>dashboard</h2>;
+      case "dashboard": return <Dashboard setView={setView}/>;
       case "create": return <Create/>;
-      default: return <Dashboard/>;
+      default: return <Dashboard setView={setView} />;
     }
   };
   useEffect(() => {
