@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/Create.css";
 import Preview from "./Preview";
 
@@ -64,7 +66,7 @@ const uploadToCloudinary = async (file) => {
         createdAt: new Date(),
       });
 
-      alert("Product saved successfully!");
+      toast("Product saved successfully!");
       setForm({
         name: "",
         price: "",
@@ -74,7 +76,7 @@ const uploadToCloudinary = async (file) => {
       });
     } catch (err) {
       console.error("Error saving product:", err);
-      alert("Failed to save product.");
+      toast("Failed to save product.");
     }
 
     setLoading(false);
@@ -150,6 +152,18 @@ const uploadToCloudinary = async (file) => {
           <Preview form={form} />
         </div>
       </div>
+      <ToastContainer 
+         position="top-right"
+         autoClose={3000}
+         hideProgressBar={true}
+         newestOnTop={false}
+         closeOnClick
+         pauseOnFocusLoss
+         draggable
+         pauseOnHover
+         theme="light" 
+       />
+
     </div>
   );
 }

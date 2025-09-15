@@ -14,6 +14,10 @@
 .basic-button{
     padding: 10px 20px;
     background-color: #f1f0f0;
+    font-size: 1rem;
+}
+.basic-button:hover{
+  background-color: #d6d6d6;
 }
 
 .section-title {
@@ -23,44 +27,205 @@
 }
 
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px; 
+  overflow-x: scroll;
+}
+
+.product-grid::-webkit-scrollbar {
+  height: 6px; 
+}
+
+.product-grid::-webkit-scrollbar-track {
+  background: rgba(255, 254, 254, 0.2);
+  border-radius: 10px;
+}
+
+.product-grid::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.4);
+  border-radius: 10px;
 }
 
 .product-card {
-  background: #fff;
-  border-radius: 12px;
+  position: relative;
+  width: 250px;
+  height: 280px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
-}
-
-.product-card img {
+.product-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 160px;
-  object-fit: cover;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
-.product-card h3 {
-  margin: 10px;
+.product-card-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  box-sizing: border-box;
+  gap: 0.8rem;
+  color: #fff;
+}
+
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.product-card-title-category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.product-card-title {
   font-size: 1.2rem;
+  margin: 0;
 }
 
-.price {
-  margin: 0 10px 5px;
-  color: #ff6f91;
+.product-card-price {
   font-weight: bold;
+  margin: 0;
+  font-size: 1rem;
+  color: #ffd369;
 }
 
-.category {
-  margin: 0 10px 10px;
+.product-card-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: rgba(255,255,255,0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  margin-top: 0.2rem;
+}
+
+.product-card-description {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.product-btn {
+  flex: 1;
+  padding: 0.6rem;
+  background: rgba(255,255,255,0.15);
+   border: #333;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+
+.delete-btn:hover {
+  background: rgba(73, 15, 15, 0.541);
+}
+
+.Toastify__toast {
+  border-radius: 12px !important;
+  font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
-  color: #666;
+  padding: 12px 16px;
 }
 
+.confirm-toast {
+  width:100% ;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confirm-toast-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  
+}
+
+.confirm-toast-buttons button {
+  padding: 6px 14px;
+  width: 100%;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.confirm-toast-buttons .yes-btn {
+  background-color: #66050c ;
+  color: white;
+}
+
+.confirm-toast-buttons .yes-btn:hover {
+  background-color: #351618;
+}
+
+.confirm-toast-buttons .no-btn {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.confirm-toast-buttons .no-btn:hover {
+  background-color: #e0e0e0;
+}
+
+
+@media (max-width: 768px) {
+  .product-card-title-category {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .product-card-title {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .product-card-price {
+    font-size: 0.9rem;
+  }
+}
 
