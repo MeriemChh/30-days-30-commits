@@ -1,0 +1,98 @@
+.aboutus {
+  position: relative;
+  padding: 80px 20px;
+  width: 100%;
+  background: linear-gradient(90deg, #f5e6d3, #f0d9b5);
+  font-family: "Cinzel Decorative", sans-serif;
+  overflow: hidden; 
+}
+
+.aboutus-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.aboutus-text {
+  text-align: center;
+  padding: 30px;
+}
+
+.aboutus-text h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #3a1b07;
+}
+
+.aboutus-text p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  max-width: 700px;
+  text-align: justify;
+}
+
+.readmore-btn {
+  font-family: "Cinzel Decorative";
+  margin-top: 40px;
+  padding: 10px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  background: linear-gradient(135deg, #3a1c0f, #5c2c1f);
+  color: #f5e6d3;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.readmore-btn:hover {
+  background: linear-gradient(135deg, #5c2c1f, #3a1c0f);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 2.2rem;
+  color: #9b4a28; 
+  opacity: 0.85;
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.cake-icon { top: 10%; left: 25%; animation-delay: 0s; }
+.cookie-icon { top: 15%; right: 10%; animation-delay: 1s; }
+.chocolate-icon { bottom: 15%; left: 10%; animation-delay: 2s; }
+.slice-icon { top: 90%; left: 50%; animation-delay: 1.5s; }
+.cupcake-icon { top: 20%; right: 85%; animation-delay: 2.5s; }
+.donut-icon { top: 80%; right: 5%; animation-delay: 3s; }
+.bakery-icon { top: 5%; right: 35%; animation-delay: 5.5s; }
+
+@keyframes floaty {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(8deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.aboutus {
+  position: relative; 
+  overflow: hidden;   
+}
+
+
+@media (max-width: 768px) {
+  .aboutus-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .aboutus-text {
+    padding: 20px;
+  }
+}

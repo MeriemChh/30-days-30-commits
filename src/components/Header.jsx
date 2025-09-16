@@ -2,7 +2,7 @@ import { useNavigate }  from 'react-router-dom';
 import "../styles/Header.css";
 import { FaShoppingCart } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
+import { FaYoutube, FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
 import { useState } from "react";
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -56,6 +56,7 @@ export default function Header() {
               <li onClick={() =>  navigate("/admin")}>Login</li>
             </ul>
             <div className="socials">
+              <FaYoutube size={20} className="socialmedia-icon" />
               <FaInstagram size={20} className="socialmedia-icon" />
               <FaFacebook size={20} className="socialmedia-icon" />
               <FaTiktok size={20} className="socialmedia-icon" />
@@ -63,8 +64,7 @@ export default function Header() {
 
             </div>
           </div>
-
-          
+ 
         )}
 
         {isMobileMenuOpen && (

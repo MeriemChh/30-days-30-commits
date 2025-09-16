@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: white;
+  background-color: #fffcf8;
   overflow: hidden;
   overflow-y: scroll;
   padding-bottom: 50px;
@@ -71,7 +71,7 @@
   font-size: 1rem;
   border-radius: 8px 8px 0px 0px ;
 
-  background: rgba(202, 116, 17, 0.048);
+  background: rgba(202, 116, 17, 0);
   outline: none;
   transition: all 0.3s ease;
 }

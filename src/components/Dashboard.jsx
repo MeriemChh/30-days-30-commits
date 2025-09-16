@@ -114,17 +114,18 @@ const handleDelete = async (id, name) => {
 
 
 
-            <ToastContainer 
-         position="top-right"
-         autoClose={3000}
-         hideProgressBar={true}
-         newestOnTop={false}
-         closeOnClick
-         pauseOnFocusLoss
-         draggable
-         pauseOnHover
-         theme="light" 
-       />
+<ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={true}
+  newestOnTop={true}
+  closeOnClick
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
+/>
+
 
     </div>
   );

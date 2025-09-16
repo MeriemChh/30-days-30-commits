@@ -1,6 +1,7 @@
 .dashboard {
   padding: 20px;
   font-family: "Poppins", sans-serif;
+  background-color: #fffcf8;
 }
 
 .dashboard-header{
@@ -16,6 +17,7 @@
     background-color: #f1f0f0;
     font-size: 1rem;
 }
+
 .basic-button:hover{
   background-color: #d6d6d6;
 }
@@ -163,18 +165,35 @@
   background: rgba(73, 15, 15, 0.541);
 }
 
+.Toastify__toast-container {
+  margin: 12px;
+  width: calc(100% - 24px);
+  box-sizing: border-box;
+  gap: 8px;
+
+}
+
 .Toastify__toast {
   border-radius: 12px !important;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
+  color: black;
   padding: 12px 16px;
+  background: rgba(45, 45, 45, 0.151);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+ 
 }
 
+
 .confirm-toast {
+  margin: 10px;
+  box-sizing: border-box;
   width:100% ;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 15px;
 }
 
 .confirm-toast-buttons {

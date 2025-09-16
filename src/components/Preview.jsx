@@ -3,7 +3,7 @@ import "../styles/Preview.css";
 export default function Preview({ form }) {
   if (!form.name && !form.price && !form.image) {
     return (
-      <div className="preview placeholder">
+      <div className="preview-placeholder">
         <p>Product preview will appear here</p>
       </div>
     );
