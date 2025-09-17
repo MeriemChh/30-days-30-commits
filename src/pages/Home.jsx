@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Latest from "../components/Latest";                        
 import "../styles/Home.css";
 import AboutUs from "../components/AboutUs";    
+import ContactUs from "../components/ContactUs";    
+import Footer from "../components/Footer";
 
 
 export default function Home() {
@@ -12,6 +14,7 @@ export default function Home() {
       <Hero />
       <Latest />
       <AboutUs/>
+      <Footer/>
     </div>
   );
 }

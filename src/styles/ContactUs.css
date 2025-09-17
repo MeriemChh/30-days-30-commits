@@ -1,0 +1,59 @@
+.contactus {
+  width: 100%;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Cinzel Decorative", sans-serif;
+}
+
+.contactus h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: #3a1b07;
+}
+
+.contactus p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #3a1b07;
+}
+
+.contactus-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.contactus-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #3a1b07;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: #5c2c1f;
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}

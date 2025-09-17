@@ -3,12 +3,15 @@ import "../styles/AboutUs.css";
 import { FaBirthdayCake, FaIceCream, FaCookie, FaCoffee } from "react-icons/fa";
 import { GiCakeSlice, GiCupcake, GiDonut, GiChocolateBar, GiStrawberry, GiCandyCanes } from "react-icons/gi";
 import { MdBakeryDining } from "react-icons/md";
+import ContactUs from "./ContactUs";    
+
 
 export default function AboutUs() {
   const navigate = useNavigate();
 
   return (
     <section className="aboutus">
+
       {/* Floating icons */}
       <FaBirthdayCake className="floating-icon cake-icon" />
       <FaCookie className="floating-icon cookie-icon" />
@@ -36,6 +39,9 @@ export default function AboutUs() {
           </button>
         </div>
       </div>
+
+      <ContactUs/>
+
     </section>
   );
 }
