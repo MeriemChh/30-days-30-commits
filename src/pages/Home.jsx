@@ -5,6 +5,7 @@ import "../styles/Home.css";
 import AboutUs from "../components/AboutUs";    
 import ContactUs from "../components/ContactUs";    
 import Footer from "../components/Footer";
+import ProductsGrid from "../components/ProductsGrid";
 
 
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
     <div className="home">
       <Header />
       <Hero />
-      <Latest />
+      <ProductsGrid />
       <AboutUs/>
       <Footer/>
     </div>
