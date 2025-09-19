@@ -11,6 +11,7 @@ export default function Dashboard({ setView }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    {/* */}
     const fetchProducts = async () => {
       try {
         const snapshot = await getDocs(collection(db, "products"));

@@ -1,114 +1,139 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase"; 
+import { db } from "../firebase";
 import {
   collection,
-  getDocs,
   query,
   orderBy,
   limit,
   startAfter,
-  endBefore,
+  getDocs,
+  where,
 } from "firebase/firestore";
 import "../styles/ProductsGrid.css";
 
 export default function ProductsGrid() {
   const [products, setProducts] = useState([]);
-  const [pageCursors, setPageCursors] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState("all");
+  const [pageStack, setPageStack] = useState([]); 
+  const [lastDoc, setLastDoc] = useState(null);
+  const [isLastPage, setIsLastPage] = useState(false);
 
-  const productsPerPage = 8;
+  const productsRef = collection(db, "products");
 
+  const fetchProducts = async (direction = "initial") => {
+    let q = query(productsRef, orderBy("createdAt", "desc"), limit(8));
 
-  useEffect(() => {
-    fetchPage(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const fetchPage = async (page, direction) => {
-    setLoading(true);
-
-    try {
-      const productsRef = collection(db, "products");
-      let q;
-
-      if (page === 1) {
-        q = query(productsRef, orderBy("createdAt", "desc"), limit(productsPerPage));
-      } else if (direction === "next") {
-        const lastVisible = pageCursors[page - 2]; 
-        q = query(
-          productsRef,
-          orderBy("createdAt", "desc"),
-          startAfter(lastVisible),
-          limit(productsPerPage)
-        );
-      } else if (direction === "prev") {
-        const firstVisible = pageCursors[page]; 
-        q = query(
-          productsRef,
-          orderBy("createdAt", "desc"),
-          endBefore(firstVisible),
-          limit(productsPerPage)
-        );
-      }
-
-      const snapshot = await getDocs(q);
-      const items = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      setProducts(items);
-
-      if (snapshot.docs.length > 0) {
-        const cursors = [...pageCursors];
-        cursors[page - 1] = snapshot.docs[snapshot.docs.length - 1]; 
-        setPageCursors(cursors);
-      }
-
-      setCurrentPage(page);
-    } catch (err) {
-      console.error("Error fetching products:", err);
+    if (category !== "all") {
+      q = query(
+        productsRef,
+        where("category", "==", category),
+        orderBy("createdAt", "desc"),
+        limit(8)
+      );
     }
 
-    setLoading(false);
+    if (direction === "next" && lastDoc) {
+      q = query(q, startAfter(lastDoc));
+    } else if (direction === "prev" && pageStack.length > 0) {
+      const prevStack = [...pageStack];
+      const prevDoc = prevStack.pop(); 
+      setPageStack(prevStack);
+      q = query(q, startAfter(prevDoc));
+    }
+
+    const snapshot = await getDocs(q);
+
+    if (!snapshot.empty) {
+      setProducts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+
+      const newLastDoc = snapshot.docs[snapshot.docs.length - 1];
+      setLastDoc(newLastDoc);
+
+      if (direction === "next") {
+        setPageStack((prev) => [...prev, lastDoc]);
+      }
+
+  
+      setIsLastPage(snapshot.docs.length < 8);
+    } else {
+      setProducts([]);
+      setIsLastPage(true);
+    }
   };
 
-  return (
-    <div className="products-grid">
-      {loading && <p>Loading...</p>}
+  useEffect(() => {
+    setProducts([]);
+    setLastDoc(null);
+    setPageStack([]);
+    setIsLastPage(false);
+    fetchProducts("initial");
+  }, [category]);
 
-      <div className="grid">
-        {products.map((product) => (
-          <div key={product.id} className="card">
-            <img
-              src={product.imageUrl || "./placeholder.png"}
-              alt={product.name}
-            />
-            <h3>{product.name}</h3>
-            <p>{product.price} DZD</p>
-          </div>
+  return (
+    <section className="public-products-container">
+      {/* Filters */}
+      <div className="public-filters">
+        {["all", "cake", "service", "other"].map((cat) => (
+          <button
+            key={cat}
+            className={`public-filter-btn ${category === cat ? "active" : ""}`}
+            onClick={() => setCategory(cat)}
+          >
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>
         ))}
       </div>
 
+      {/* Products */}
+      <div className="public-products-grid">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div className="public-product-card" key={product.id}>
+              <div
+                className="public-product-bg"
+                    style={{ backgroundImage: `url(${product.imageUrl})` }}
+              />
+              <div className="public-product-overlay">
+                <div className="public-product-info">
+                  <div className="public-title-category">
+                    <h3 className="public-product-title">{product.name}</h3>
+                    <span className="public-product-category">
+                      {product.category}
+                    </span>
+                  </div>
+                  <p className="public-product-description">
+                    {product.description || "No description"}
+                  </p>
+                  <p className="public-product-price">{product.price} DZD</p>
+                </div>
+                <button className="public-product-btn">View</button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="public-empty">No products found</p>
+        )}
+      </div>
 
-      <div className="pagination">
+      {/* Pagination */}
+      <div className="public-pagination">
         <button
-          onClick={() => fetchPage(currentPage - 1, "prev")}
-          disabled={currentPage === 1 || loading}
+          className={`public-pagination-btn ${
+            pageStack.length === 0 ? "disabled" : ""
+          }`}
+          disabled={pageStack.length === 0}
+          onClick={() => fetchProducts("prev")}
         >
           Prev
         </button>
-
-        <span>Page {currentPage}</span>
-
         <button
-          onClick={() => fetchPage(currentPage + 1, "next")}
-          disabled={products.length < productsPerPage || loading}
+          className={`public-pagination-btn ${isLastPage ? "disabled" : ""}`}
+          disabled={isLastPage}
+          onClick={() => fetchProducts("next")}
         >
-          Next
+          Next 
         </button>
       </div>
-    </div>
+    </section>
   );
 }
