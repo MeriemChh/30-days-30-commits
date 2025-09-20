@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { db } from "../firebase";
 import {
   collection,
@@ -6,68 +6,86 @@ import {
   orderBy,
   limit,
   startAfter,
-  getDocs,
   where,
+  getDocs,
 } from "firebase/firestore";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import "../styles/ProductsGrid.css";
 
-export default function ProductsGrid() {
-  const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("all");
-  const [pageStack, setPageStack] = useState([]); 
-  const [lastDoc, setLastDoc] = useState(null);
-  const [isLastPage, setIsLastPage] = useState(false);
-
+const fetchProducts = async ({ category, lastDoc }) => {
   const productsRef = collection(db, "products");
 
-  const fetchProducts = async (direction = "initial") => {
-    let q = query(productsRef, orderBy("createdAt", "desc"), limit(8));
+  let q = query(productsRef, orderBy("createdAt", "desc"), limit(8));
 
-    if (category !== "all") {
-      q = query(
-        productsRef,
-        where("category", "==", category),
-        orderBy("createdAt", "desc"),
-        limit(8)
-      );
-    }
+  if (category !== "all") {
+    q = query(
+      productsRef,
+      where("category", "==", category),
+      orderBy("createdAt", "desc"),
+      limit(8)
+    );
+  }
 
-    if (direction === "next" && lastDoc) {
-      q = query(q, startAfter(lastDoc));
-    } else if (direction === "prev" && pageStack.length > 0) {
-      const prevStack = [...pageStack];
-      const prevDoc = prevStack.pop(); 
-      setPageStack(prevStack);
-      q = query(q, startAfter(prevDoc));
-    }
+  if (lastDoc) {
+    q = query(q, startAfter(lastDoc));
+  }
 
-    const snapshot = await getDocs(q);
+  const snapshot = await getDocs(q);
 
-    if (!snapshot.empty) {
-      setProducts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+  return {
+    products: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+    lastDoc: snapshot.docs[snapshot.docs.length - 1] || null,
+    isLastPage: snapshot.docs.length < 8,
+  };
+};
 
-      const newLastDoc = snapshot.docs[snapshot.docs.length - 1];
-      setLastDoc(newLastDoc);
+export default function ProductsGrid() {
+  const [category, setCategory] = useState("all");
+  const [pageStack, setPageStack] = useState([]); 
+  const queryClient = useQueryClient();
 
-      if (direction === "next") {
-        setPageStack((prev) => [...prev, lastDoc]);
-      }
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["products", category, pageStack.length], 
+    queryFn: () =>
+      fetchProducts({
+        category,
+        lastDoc: pageStack[pageStack.length - 1] || null,
+      }),
+    keepPreviousData: true,
+    staleTime: 1000 * 60 * 10, // 10 min cache
+  });
 
-  
-      setIsLastPage(snapshot.docs.length < 8);
-    } else {
-      setProducts([]);
-      setIsLastPage(true);
+  const handleNext = () => {
+    if (data?.lastDoc) {
+      setPageStack((prev) => [...prev, data.lastDoc]);
     }
   };
 
-  useEffect(() => {
-    setProducts([]);
-    setLastDoc(null);
-    setPageStack([]);
-    setIsLastPage(false);
-    fetchProducts("initial");
-  }, [category]);
+  const handlePrev = () => {
+    if (pageStack.length > 0) {
+      setPageStack((prev) => prev.slice(0, -1));
+    }
+  };
+
+  const handleCategoryChange = (cat) => {
+    setCategory(cat);
+    setPageStack([]); 
+    queryClient.removeQueries({ queryKey: ["products", cat] }); 
+    refetch();
+  };
+
+  if (isLoading) {
+  return (
+    <div className="loading">
+      <div className="loading-dots">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>  
+  );
+}
+  if (isError) return <p className="public-empty">Error loading products</p>;
 
   return (
     <section className="public-products-container">
@@ -77,7 +95,7 @@ export default function ProductsGrid() {
           <button
             key={cat}
             className={`public-filter-btn ${category === cat ? "active" : ""}`}
-            onClick={() => setCategory(cat)}
+            onClick={() => handleCategoryChange(cat)}
           >
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
@@ -86,12 +104,12 @@ export default function ProductsGrid() {
 
       {/* Products */}
       <div className="public-products-grid">
-        {products.length > 0 ? (
-          products.map((product) => (
+        {data?.products?.length > 0 ? (
+          data.products.map((product) => (
             <div className="public-product-card" key={product.id}>
               <div
                 className="public-product-bg"
-                    style={{ backgroundImage: `url(${product.imageUrl})` }}
+                style={{ backgroundImage: `url(${product.imageUrl})` }}
               />
               <div className="public-product-overlay">
                 <div className="public-product-info">
@@ -106,7 +124,17 @@ export default function ProductsGrid() {
                   </p>
                   <p className="public-product-price">{product.price} DZD</p>
                 </div>
-                <button className="public-product-btn">View</button>
+                <button
+                  className="public-product-btn"
+                  onClick={() =>
+                    queryClient.setQueryData(
+                      ["product", product.id],
+                      product
+                    )
+                  }
+                >
+                  View
+                </button>
               </div>
             </div>
           ))
@@ -122,16 +150,18 @@ export default function ProductsGrid() {
             pageStack.length === 0 ? "disabled" : ""
           }`}
           disabled={pageStack.length === 0}
-          onClick={() => fetchProducts("prev")}
+          onClick={handlePrev}
         >
           Prev
         </button>
         <button
-          className={`public-pagination-btn ${isLastPage ? "disabled" : ""}`}
-          disabled={isLastPage}
-          onClick={() => fetchProducts("next")}
+          className={`public-pagination-btn ${
+            data?.isLastPage ? "disabled" : ""
+          }`}
+          disabled={data?.isLastPage}
+          onClick={handleNext}
         >
-          Next 
+          Next
         </button>
       </div>
     </section>

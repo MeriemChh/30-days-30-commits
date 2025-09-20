@@ -1,12 +1,42 @@
-# React + Vite
+# 🍰 30 Days, 30 Commits – Online Cake Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository documents my **30 Days, 30 Commits Challenge**:  
+a personal project where I commit code every day for 30 days while building a **fully functional online Cake Shop web app**.  
 
-Currently, two official plugins are available:
+The challenge is about **consistency, learning, and shipping features daily** while keeping track of progress publicly.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📖 About the Project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The **Cake Shop App** is an e-commerce web application that allows customers to browse cakes, view details, and place orders online.  
+
+The project demonstrates how to:
+- Build modern, responsive UI with **React**  
+- Handle authentication, data storage, and hosting with **Firebase**  
+- Manage image uploads and delivery with **Cloudinary**  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: [React](https://react.dev/) (Vite setup for fast dev & builds)  
+- **Backend / Hosting / Auth / Database**: [Firebase](https://firebase.google.com/)  
+- **Image Management**: [Cloudinary](https://cloudinary.com/)  
+- **Version Control**: Git + GitHub  
+
+---
+
+## 🚀 Features (WIP)
+
+- 🔐 User Authentication (Sign up / Login with Firebase)  
+- 🛍️ Browse Cakes by Category  
+- 📸 Cloudinary-powered Image Uploads  
+- 🛒 Shopping Cart & Order Flow  
+- 📱 Responsive UI for Mobile & Desktop  
+- 📊 Admin Dashboard for managing cakes & orders *(planned)*  
+
+---
+
+## 📂 Folder Structure
+

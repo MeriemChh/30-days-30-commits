@@ -63,13 +63,17 @@ const handleDelete = async (id, name) => {
   );
 }
 
-  if (loading) {
-    return (
-      <div className="dashboard">
-        <p>Loading products...</p>
+if (loading) {
+  return (
+    <div className="loading">
+      <div className="loading-dots">
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-    );
-  }
+    </div>  
+  );
+}
 
   return (
     <div className="dashboard">
