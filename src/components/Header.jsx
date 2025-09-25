@@ -4,8 +4,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaYoutube, FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";     
+
+
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cart, isCartOpen, toggleCart } = useCart();
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -38,9 +44,13 @@ export default function Header() {
           <h6>logo</h6>
         </div>
 
-        <div className="cart">
-          <FaShoppingCart size={24} />
+        <div onClick={toggleCart} className="cart">
+           <FaShoppingCart size={24} />
+          {totalItems > 0 && (
+            <span className="cart-badge">{totalItems}</span>
+          )}
         </div>
+
 
       </div>
 

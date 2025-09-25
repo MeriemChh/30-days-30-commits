@@ -1,5 +1,5 @@
 .env
-
+.vercel
 # Logs
 logs
 *.log
@@ -24,3 +24,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
