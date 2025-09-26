@@ -2,11 +2,12 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import { FiX } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
-
+import { Link, useNavigate } from "react-router-dom";   
 import "../styles/Cart.css";                
 
 export default function Cart() {
-  const { cart, isCartOpen, toggleCart, addToCart, removeFromCart } = useCart();
+    const navigate = useNavigate();  
+    const { cart, isCartOpen, toggleCart, addToCart, removeFromCart } = useCart();
 
   if (!isCartOpen) return null;
 
@@ -59,7 +60,12 @@ export default function Cart() {
 
       {cart.length > 0 && (
         <div className="cart-footer">
-          <button className="btn-checkout">Checkout</button>
+          <button 
+                onClick={() => navigate("/order")} 
+                className="btn-checkout"
+            >
+                Checkout
+            </button>
         </div>
       )}
     </div>
