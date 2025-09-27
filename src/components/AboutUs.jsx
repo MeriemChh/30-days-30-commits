@@ -10,7 +10,7 @@ export default function AboutUs() {
   const navigate = useNavigate();
 
   return (
-    <section className="aboutus">
+    <section id="about" className="aboutus">
 
       {/* Floating icons */}
       <FaBirthdayCake className="floating-icon cake-icon" />

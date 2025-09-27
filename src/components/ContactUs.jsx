@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaEnvelope, FaInstagram, FaWhatsapp } from "react-icons/fa"
 
 export default function ContactUs() {
   return (
-    <section className="contactus">
+    <section id="contact" className="contactus">
       <h2>Contact Us</h2>
       <p>
         We’d love to hear from you! Get in touch for custom cakes, events, or

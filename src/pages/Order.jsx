@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";    
 import "../styles/Order.css";
 
-
+import { FaEdit, FaCheck } from "react-icons/fa";
 
 export default function Order() {
 
@@ -100,9 +100,7 @@ export default function Order() {
 
   cart.forEach((item) => removeFromCart(item.id));
 
-  setTimeout(() => {
-    navigate("/");
-  }, 1500);
+
 };
 
 
@@ -221,41 +219,62 @@ export default function Order() {
         </form>
       )}
 
-      {/* Confirmation Modal */}
-      {showConfirm && (
+        {/* Confirmation Modal */}
+        {showConfirm && (
         <div className="confirm-modal">
-          <div className="confirm-content">
-            <h3>Review Your Order</h3>
-            <div className="confirm-details">
-              <p><strong>Name:</strong> {name}</p>
-              <p><strong>Phone:</strong> {phone}</p>
-              <p><strong>Wilaya:</strong> {wilaya}</p>
-              <p><strong>Baladya:</strong> {baladya}</p>
-              <p><strong>Address:</strong> {address}</p>
-              <p><strong>Delivery Method:</strong> {deliveryMethod === "desk" ? "Pickup at Delivery Desk" : "Home Delivery"}</p>
-              <p><strong>Note:</strong> {note || "None"}</p>
-              <hr />
-              <h4>Items:</h4>
-              {cart.map((item) => (
-                <p key={item.id}>
-                  {item.name} x {item.qty} = {item.price * item.qty} DZD
-                </p>
-              ))}
-              <hr />
-              <p>Subtotal: {cartTotal} DZD</p>
-              <p>Delivery Fee: {deliveryFee} DZD</p>
-              <h3 className="total-price" >Total: {finalTotal} DZD</h3>
+            <div className="receipt">
+            <div className="receipt-header">
+                <h2>Order Receipt</h2>
+                <p className="receipt-date">{new Date().toLocaleString()}</p>
             </div>
 
-            <div className="confirm-actions">
-              <button onClick={() => setShowConfirm(false)}>Edit Order</button>
-              <button className="btn-confirm" onClick={confirmOrder}>
-                Confirm Order
-              </button>
+            <div className="receipt-section customer-info">
+                <h4>Customer Info</h4>
+                <p><span className="label">Name:</span> {name}</p>
+                <p><span className="label">Phone:</span> {phone}</p>
+                <p><span className="label">Wilaya:</span> {wilaya}</p>
+                <p><span className="label">Baladya:</span> {baladya}</p>
+                <p><span className="label">Address:</span> {address}</p>
+                <p>
+                <span className="label">Delivery:</span>{" "}
+                {deliveryMethod === "desk"
+                    ? "Pickup at Delivery Desk"
+                    : "Home Delivery"}
+                </p>
+                <p><span className="label">Note:</span> {note || "None"}</p>
             </div>
-          </div>
+
+            <div className="receipt-section order-items">
+                <h4>Items</h4>
+                <ul>
+                {cart.map((item) => (
+                    <li key={item.id} className="receipt-item">
+                    <span>{item.name} × {item.qty}</span>
+                    <span>{item.price * item.qty} DZD</span>
+                    </li>
+                ))}
+                </ul>
+            </div>
+
+            <div className="receipt-summary">
+                <p><span>Subtotal:</span> {cartTotal} DZD</p>
+                <p><span>Delivery Fee:</span> {deliveryFee} DZD</p>
+                <h3 className="receipt-total">Total: {finalTotal} DZD</h3>
+            </div>
+
+            <div className="receipt-actions">
+                <button className="btn-edit" onClick={() => setShowConfirm(false)}>
+                <FaEdit className="icon" /> Edit Order
+                </button>
+
+                <button className="btn-confirm" onClick={confirmOrder}>
+                <FaCheck className="icon" /> Confirm Order
+                </button>
+            </div>
+            </div>
         </div>
-      )}
+        )}
+
 
       <ToastContainer 
             position="top-right"

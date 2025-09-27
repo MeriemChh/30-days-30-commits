@@ -63,10 +63,14 @@ export default function ProductsGrid() {
     refetch();
   };
 
-  useEffect(() => {
-  const element = document.getElementById("products");
-  element?.scrollIntoView({ behavior: "smooth", block: "start" });
+useEffect(() => {
+  // Only scroll when pageStack is not empty
+  if (pageStack.length > 0) {
+    const element = document.getElementById("products");
+    element?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }, [pageStack]);
+
 
   if (isLoading)
     return (

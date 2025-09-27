@@ -27,13 +27,13 @@ export default function Header() {
       <div className="header-content">
 
         <div className="nav">
-          <ul className="navbar">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li onClick={() =>  navigate("/admin")}>Login</li>
+        <ul className="navbar">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li onClick={() => navigate("/admin")}>Login</li>
+        </ul>
 
-          </ul>
 
           <div className="menu" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -59,12 +59,13 @@ export default function Header() {
         {/* Mobile Screen */}
         {isMobileMenuOpen && (
           <div className="nav-screen">
-            <ul className="mobile-navbar">
-              <li onClick={toggleMobileMenu}>Home</li>
-              <li onClick={toggleMobileMenu}>Workshops</li>
-              <li onClick={toggleMobileMenu}>About us</li>
-              <li onClick={() =>  navigate("/admin")}>Login</li>
-            </ul>
+          <ul className="mobile-navbar">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li onClick={() => navigate("/admin")}>Login</li>
+          </ul>
+
             <div className="socials">
               <FaYoutube size={20} className="socialmedia-icon" />
               <FaInstagram size={20} className="socialmedia-icon" />

@@ -3,7 +3,7 @@ import "../styles/Hero.css";
 
 export default function Hero() {
   return (
-<div className="hero">
+<div id="hero" className="hero">
   {/** */}
   <video
     autoPlay

@@ -131,7 +131,7 @@
   text-align: center;
 }
 
-.mobile-navbar li {
+.mobile-navbar li, .mobile-navbar a {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 400;
@@ -139,7 +139,7 @@
   transition: color 0.2s ease;
 }
 
-.mobile-navbar li:hover {
+.mobile-navbar li:hover , .mobile-navbar a:hover  {
   color: gold;
 }
 
