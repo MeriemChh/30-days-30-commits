@@ -212,7 +212,7 @@
   text-align: center;
   border-bottom: 2px dashed #333;
   margin-bottom: 1rem;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
 .receipt-section {
@@ -229,6 +229,18 @@
   border-top: 2px dashed #333;
   padding-top: 1rem;
 }
+
+.receipt-summary p,
+.receipt-summary h3.receipt-total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.receipt-summary h3.receipt-total {
+  margin-top: 1rem; 
+  font-weight: bold;
+}
+
 
 .receipt-actions {
   display: flex;

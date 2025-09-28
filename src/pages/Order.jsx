@@ -257,10 +257,12 @@ export default function Order() {
             </div>
 
             <div className="receipt-summary">
-                <p><span>Subtotal:</span> {cartTotal} DZD</p>
-                <p><span>Delivery Fee:</span> {deliveryFee} DZD</p>
-                <h3 className="receipt-total">Total: {finalTotal} DZD</h3>
+            <p><span>Subtotal:</span> {cartTotal} DZD</p>
+            <p><span>Delivery Fee:</span> {deliveryFee} DZD</p>
+            <h3 className="receipt-total"><span>Total:</span> {finalTotal} DZD</h3>
             </div>
+
+
 
             <div className="receipt-actions">
                 <button className="btn-edit" onClick={() => setShowConfirm(false)}>

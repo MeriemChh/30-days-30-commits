@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import Dashboard from "../components/Dashboard";
 import Create from "../components/Create";
+import Orders from "../components/Orders";
 
 
 export default function Admin() {
@@ -18,6 +19,7 @@ export default function Admin() {
     switch (view) {
       case "dashboard": return <Dashboard setView={setView}/>;
       case "create": return <Create/>;
+      case "orders": return <Orders/>;
       default: return <Dashboard setView={setView} />;
     }
   };
@@ -64,6 +66,7 @@ if (loading) {
           <button onClick={() => navigate("/")} className="nav-link">Home</button>
           <button onClick={() => setView("dashboard")} className="nav-link">Dashboard</button>
           <button onClick={() => setView("create")} className="nav-link">Create</button>
+          <button onClick={() => setView("orders")} className="nav-link">Orders</button>
         </nav>
         
         <nav>

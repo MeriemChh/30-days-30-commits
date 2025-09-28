@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Error404 from "./pages/Error404";
 import Order from "./pages/Order";   
+
 import "./App.css";  
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/order" element={<Order />} />     
       <Route path="*" element={<Error404 />} />
-
     </Routes>
   </Router>
   );

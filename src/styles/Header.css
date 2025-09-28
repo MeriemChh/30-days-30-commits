@@ -59,14 +59,15 @@
   margin: 0;
 }
 
-.navbar li {
+.navbar li , .navbar a{
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 400;
   transition: color 0.2s ease;
+  color: #fff;
 }
 
-.navbar li:hover {
+.navbar li:hover , .navbar a:hover{
   color: gold;
 }
 

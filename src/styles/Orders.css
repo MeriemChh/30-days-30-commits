@@ -1,0 +1,197 @@
+.orders-section {
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+.orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.orders-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.orders-filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.orders-filter-btn:hover {
+  background: #eaeaea;
+}
+
+.orders-filter-btn.active {
+  background: #000000;
+  color: #fff;
+  border-color: #000000;
+  font-weight: 600;
+}
+
+.orders-list {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+
+                          
+.orders-table th,
+.orders-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  
+}
+
+.orders-table th {
+  background: #f9f9f9;
+  font-weight: 600;
+  font-size: 0.9rem;
+  
+}
+
+.orders-table tr:hover {
+  background: #fdfdfd;
+}
+
+.orders-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+}
+
+.status {
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 0.85rem;
+}
+
+.status.pending {
+  background: #fff7e6;
+  color: #b45309;
+}
+
+.status.confirmed {
+  background: #e6fffa;
+  color: #047857;
+}
+
+.status.complete {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.orders-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.orders-pagination-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.orders-pagination-btn:hover:not(.disabled) {
+  background: #000000;
+  color: #fff;
+  border-color: #000000;
+}
+
+.orders-pagination-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.phone-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.phone-link:hover {
+  color: #66050c; 
+}
+
+.status-select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  background: #fdfdfd;
+  color: #333;
+  cursor: pointer;
+  font-family: "Rubik", sans-serif;
+  transition: all 0.2s ease;
+}
+
+.status-select:hover {
+  background: #f6f6f6;
+}
+
+.status-select.pending {
+  border-color: #f59e0b;
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.status-select.confirmed {
+  border-color: #2563eb;
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.status-select.complete {
+  border-color: #059669;
+  color: #047857;
+  background: rgba(5, 150, 105, 0.1);
+}
+
+.orders-table .delete-btn {
+  background-color: #e74c3c; 
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+
+.orders-table .delete-btn:hover {
+  background-color: #c0392b; 
+}
+
+.orders-table .delete-btn:active {
+  transform: scale(0.97);
+}
+
+.orders-table .delete-btn:focus {
+  outline: none;
+}
