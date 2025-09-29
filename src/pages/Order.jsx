@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";    
 import "../styles/Order.css";
 
-import { FaEdit, FaCheck } from "react-icons/fa";
+import { FaEdit, FaCheck, FaArrowAltCircleLeft } from "react-icons/fa";
 
 export default function Order() {
 
@@ -74,6 +74,7 @@ export default function Order() {
     const docRef = await addDoc(collection(db, "orders"), order);
     toast.success("Order saved to database!");
     setShowConfirm(false);
+    navigate("/thank-you");  
 } catch (error) {
     console.error("❌ Error adding order: ", error);
     toast.error("Failed to save order, please try again.");
@@ -107,7 +108,9 @@ export default function Order() {
   return (
     <div className="order-container">
       <h2>Checkout</h2>
-
+        <div className="back">
+            <button onClick={() => navigate(-1)} className="btn-back"> <FaArrowAltCircleLeft/></button> 
+        </div>
       <div className="order-items">
         {cart.length === 0 ? (
           <p>Your cart is empty</p>

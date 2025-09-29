@@ -64,7 +64,6 @@ export default function ProductsGrid() {
   };
 
 useEffect(() => {
-  // Only scroll when pageStack is not empty
   if (pageStack.length > 0) {
     const element = document.getElementById("products");
     element?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -126,7 +125,7 @@ useEffect(() => {
                   className="public-product-btn"
                   onClick={() => setSelectedProduct(product)}
                 >
-                  View
+                  Order Yours
                 </button>
               </div>
             </div>

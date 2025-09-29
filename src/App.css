@@ -67,3 +67,21 @@
     opacity: 0.6;
   }
 }
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #a0522d; 
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-back:hover {
+  transform: scale(1.1);
+}

@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Error404 from "./pages/Error404";
 import Order from "./pages/Order";   
+import ThankYou from "./pages/ThankYou";  
 
 import "./App.css";  
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/about" element={<About />} />
       <Route path="/order" element={<Order />} />     
+      <Route path="/thank-you" element={<ThankYou />} />     
       <Route path="*" element={<Error404 />} />
     </Routes>
   </Router>

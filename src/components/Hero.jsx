@@ -20,7 +20,7 @@ export default function Hero() {
     <p className="description">
       A modern spot for treats, flavors, and everyday delights. Your sweet journey starts here.  
     </p>
-    <button className="hero-button">Order Now</button>
+    <button onClick={() => document.getElementById("products").scrollIntoView({ behavior: "smooth" })} className="hero-button">Order Now</button>
   </div>
 
 </div>
