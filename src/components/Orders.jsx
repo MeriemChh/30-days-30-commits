@@ -16,6 +16,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReceiptModal from "../components/ReceiptModal";    
 
 import "../styles/Orders.css";
 
@@ -44,6 +45,7 @@ const fetchOrders = async ({ status, lastDoc }) => {
 };
 
 export default function Orders() {
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [status, setStatus] = useState("all");
   const [pageStack, setPageStack] = useState([]);
   const queryClient = useQueryClient();
@@ -196,8 +198,14 @@ export default function Orders() {
               <tbody>
                 {data.orders.map((order) => (
                   <tr key={order.id}>
-                    <td>#{order.id.slice(0, 6)}</td>
-                    <td>{order.name}</td>
+                    <td>
+                      <button
+                        className="order-link"
+                        onClick={() => setSelectedOrder(order)}
+                      >
+                        #{order.id.slice(0, 6)}
+                      </button>
+                    </td>                    <td>{order.name}</td>
                     <td>
                       <a href={`tel:${order.phone}`} className="phone-link">
                         {order.phone}
@@ -272,6 +280,8 @@ export default function Orders() {
         pauseOnHover
         theme="light"
       />
+            <ReceiptModal order={selectedOrder} onClose={() => setSelectedOrder(null)} />
+
     </div>
   );
 }
