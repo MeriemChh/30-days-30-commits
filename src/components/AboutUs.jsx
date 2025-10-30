@@ -24,16 +24,16 @@ export default function AboutUs() {
       <div className="aboutus-container">
         <div className="aboutus-text">
           <h2>About Us</h2>
-          <p>
-            Welcome to <strong>----</strong>, your local cake shop
-            where every dessert is baked with love. From custom birthday cakes to
-            delicate pastries, we bring joy to your celebrations with flavors
-            that feel like home.
-          </p>
-          <p>
-            We also offer high-end wedding cakes, corporate event catering, and
-            seasonal treats.
-          </p>
+         <p>
+  Welcome to <strong>Masagran Coffee & Brunch</strong> — a warm corner where every sip and bite tells a story. 
+  From freshly brewed coffee to handcrafted brunch plates and homemade desserts, 
+  we serve comfort with a touch of elegance.
+</p>
+<p>
+  Whether you're meeting friends, enjoying a quiet morning, or treating yourself to something sweet, 
+  Masagran is your spot for moments that feel like home.
+</p>
+
           <button className="readmore-btn" onClick={() => navigate("/about")}>
             Read More
           </button>

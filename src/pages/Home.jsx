@@ -7,7 +7,7 @@ import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
 import ProductsGrid from "../components/ProductsGrid";
 import Cart from "../components/Cart";        
-
+import OpenHours from "../components/OpenHours";    
 
 export default function Home() {
   return (
@@ -16,6 +16,9 @@ export default function Home() {
         <Header />
         <Cart />
         <Hero />
+        
+        <OpenHours />
+
         <ProductsGrid />
 
         <AboutUs/>

@@ -10,17 +10,16 @@ import {
   getDocs,
   doc,
   updateDoc,
-  deleteDoc, 
+  deleteDoc,
 } from "firebase/firestore";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReceiptModal from "../components/ReceiptModal";    
-
+import ReceiptModal from "../components/ReceiptModal";
 import "../styles/Orders.css";
 
-const fetchOrders = async ({ status, lastDoc }) => {
+// 🔹 Firestore fetcher
+const fetchOrders = async ({ status, lastCreatedAt }) => {
   const ordersRef = collection(db, "orders");
   let q = query(ordersRef, orderBy("createdAt", "desc"), limit(8));
 
@@ -33,13 +32,23 @@ const fetchOrders = async ({ status, lastDoc }) => {
     );
   }
 
-  if (lastDoc) q = query(q, startAfter(lastDoc));
+  if (lastCreatedAt) {
+    q = query(q, startAfter(lastCreatedAt));
+  }
 
   const snapshot = await getDocs(q);
 
+  const orders = snapshot.docs.map((d) => ({
+    id: d.id,
+    ...d.data(),
+  }));
+
   return {
-    orders: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-    lastDoc: snapshot.docs[snapshot.docs.length - 1] || null,
+    orders,
+    lastCreatedAt:
+      snapshot.docs.length > 0
+        ? snapshot.docs[snapshot.docs.length - 1].data().createdAt
+        : null,
     isLastPage: snapshot.docs.length < 8,
   };
 };
@@ -47,29 +56,35 @@ const fetchOrders = async ({ status, lastDoc }) => {
 export default function Orders() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [status, setStatus] = useState("all");
-  const [pageStack, setPageStack] = useState([]);
+  const [pageStack, setPageStack] = useState([]); 
   const queryClient = useQueryClient();
 
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["orders", status, pageStack.length],
+  const { data, isLoading, isError, isFetching } = useQuery({
+    queryKey: ["orders", status, pageStack[pageStack.length - 1] || null],
     queryFn: () =>
       fetchOrders({
         status,
-        lastDoc: pageStack[pageStack.length - 1] || null,
+        lastCreatedAt: pageStack[pageStack.length - 1] || null,
       }),
     keepPreviousData: true,
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 10, 
   });
 
-  const handleNext = () =>
-    data?.lastDoc && setPageStack((prev) => [...prev, data.lastDoc]);
-  const handlePrev = () =>
-    pageStack.length > 0 && setPageStack((prev) => prev.slice(0, -1));
+  const handleNext = () => {
+    if (data?.lastCreatedAt) {
+      setPageStack((prev) => [...prev, data.lastCreatedAt]);
+    }
+  };
+
+  const handlePrev = () => {
+    if (pageStack.length > 0) {
+      setPageStack((prev) => prev.slice(0, -1));
+    }
+  };
+
   const handleStatusChange = (st) => {
     setStatus(st);
-    setPageStack([]);
-    queryClient.removeQueries({ queryKey: ["orders", st] });
-    refetch();
+    setPageStack([]); 
   };
 
   const updateStatus = async (orderId, newStatus) => {
@@ -88,7 +103,9 @@ export default function Orders() {
                 });
                 toast.dismiss();
                 toast.success("Status updated!");
-                queryClient.invalidateQueries(["orders"]);
+
+                // ✅ invalidate all cached statuses (ensures “All” + specific filters update)
+                queryClient.invalidateQueries({ queryKey: ["orders"] });
               } catch (err) {
                 console.error(err);
                 toast.error("Failed to update status");
@@ -120,7 +137,7 @@ export default function Orders() {
                 await deleteDoc(doc(db, "orders", orderId));
                 toast.dismiss();
                 toast.success("Order deleted!");
-                queryClient.invalidateQueries(["orders"]);
+                queryClient.invalidateQueries({ queryKey: ["orders"] });
               } catch (err) {
                 console.error(err);
                 toast.error("Failed to delete order");
@@ -192,7 +209,7 @@ export default function Orders() {
                   <th>Total</th>
                   <th>Status</th>
                   <th>Date</th>
-                  <th>Actions</th> 
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -205,7 +222,8 @@ export default function Orders() {
                       >
                         #{order.id.slice(0, 6)}
                       </button>
-                    </td>                    <td>{order.name}</td>
+                    </td>
+                    <td>{order.name}</td>
                     <td>
                       <a href={`tel:${order.phone}`} className="phone-link">
                         {order.phone}
@@ -218,7 +236,9 @@ export default function Orders() {
                       <select
                         className={`status-select ${order.status}`}
                         value={order.status}
-                        onChange={(e) => updateStatus(order.id, e.target.value)}
+                        onChange={(e) =>
+                          updateStatus(order.id, e.target.value)
+                        }
                       >
                         <option value="pending">Pending</option>
                         <option value="confirmed">Confirmed</option>
@@ -268,6 +288,16 @@ export default function Orders() {
             Next
           </button>
         </div>
+
+        {isFetching && (
+          <div className="loading-inline">
+            <div className="loading-dots">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        )}
       </section>
 
       <ToastContainer
@@ -280,8 +310,11 @@ export default function Orders() {
         pauseOnHover
         theme="light"
       />
-            <ReceiptModal order={selectedOrder} onClose={() => setSelectedOrder(null)} />
 
+      <ReceiptModal
+        order={selectedOrder}
+        onClose={() => setSelectedOrder(null)}
+      />
     </div>
   );
 }

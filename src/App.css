@@ -71,17 +71,30 @@
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 1001   ;
 }
 
 .btn-back {
   background: none;
   border: none;
   font-size: 2rem;
-  color: #a0522d; 
+  color: #3a250a; 
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .btn-back:hover {
   transform: scale(1.1);
+}
+:root{
+  --light: #080808;
+  --link: #69311b;
+  --font-main: "Cenzel", sans-serif;
+  --color-primary: rgb(245, 245, 245);       
+  --color-primary-faint: rgba(18, 21, 75, 0.158);          
+  --theme-1: #03091a;
+  --theme-2: #ee8700;
+  --theme-3: #E9E3DF;
+  --theme-4: #000000;
+
 }

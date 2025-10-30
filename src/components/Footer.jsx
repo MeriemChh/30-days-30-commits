@@ -5,10 +5,10 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <h3 className="footer-logo">logo logo</h3>
-        <p className="footer-tagline">
-          Baked with love, served with joy
-        </p>
+<h3 className="footer-logo">Masagran Coffee & Brunch</h3>
+<p className="footer-tagline">
+  Brewed with passion, served with warmth
+</p>
 
         <div className="footer-socials">
           <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
@@ -23,10 +23,17 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Sweet Delights. All rights reserved.</p>
-        <a className="credit" href="https://meriem-chakhoum.vercel.app" target="_blank" rel="noopener noreferrer" > Designed & developed by Meriem Chakhoum</a>
-      </div>
+    <div className="footer-bottom">
+  <p>© {new Date().getFullYear()} Masagran Coffee & Brunch. All rights reserved.</p>
+  <a
+    className="credit"
+    href="https://meriem-chakhoum.vercel.app"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Designed & Developed by Meriem Chakhoum
+  </a>
+</div>
     </footer>
   );
 }

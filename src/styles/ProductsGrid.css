@@ -113,8 +113,8 @@
 .public-product-price {
   font-weight: bold;
   margin: 0;
-  font-size: 1rem;
-  color: #d2ff69;
+  font-size: 0.9rem;
+  color: gold;
 }
 
 .public-product-btn {
@@ -214,6 +214,8 @@
   border-color: rgba(255,255,255,0.2);
   color: #f5e6d3;
 }
+
+
 @media (max-width: 640px) {
   .products-section{
   padding: 0;
@@ -225,17 +227,18 @@
     overflow: hidden;  
   }
   .public-products-grid {
- gap: 10px;
-}
-.public-products-container {
+  gap: 10px; 
+  }
+
+ .public-products-container {
   width: 100%;
   margin: 0 auto;
   padding: 30px 10px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
-.public-filter-btn {
+ }
+ .public-filter-btn {
   padding: 0.7rem 1rem;
 
   font-size: 0.8rem;

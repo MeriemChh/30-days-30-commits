@@ -11,33 +11,106 @@
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
-
 .orders-filters {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  margin: 1.5rem 0 2rem;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* hide scrollbar (Firefox) */
+  -ms-overflow-style: none; /* hide scrollbar (IE/Edge) */
+  padding: 0 1rem;
+  scroll-behavior: smooth;
 }
 
+.orders-filters::-webkit-scrollbar {
+  display: none; /* hide scrollbar (Chrome/Safari) */
+}
+
+/* connecting line between steps */
+.orders-filters::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background: #e5e5e5;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+/* each filter as a roadmap step */
 .orders-filter-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  background: #f5f5f5;
+  position: relative;
+  background: #fff;
+  border: 2px solid #e5e5e5;
+  color: #444;
+  font-weight: 500;
   font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  margin: 0 1rem;
+  z-index: 1;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .orders-filter-btn:hover {
-  background: #eaeaea;
+  border-color: #000;
+  color: #000;
 }
 
 .orders-filter-btn.active {
-  background: #000000;
+  background: #000;
   color: #fff;
-  border-color: #000000;
+  border-color: #000;
   font-weight: 600;
+  transform: scale(1.05);
+}
+
+/* subtle circle node for each step */
+.orders-filter-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: background 0.25s ease;
+}
+
+.orders-filter-btn.active::before {
+  background: #000;
+}
+
+
+@media (max-width: 768px) {
+  .orders-filters {
+    justify-content: flex-start;
+    padding: 0.5rem;
+  }
+
+  .orders-filters::before {
+    left: 8%;
+    width: 84%;
+  }
+
+  .orders-filter-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    margin: 0 0.6rem;
+  }
 }
 
 .orders-list {
@@ -194,4 +267,44 @@
 
 .orders-table .delete-btn:focus {
   outline: none;
+}
+.orders-instruction {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.orders-instruction h4 {
+  margin: 0 0 0.4rem 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.orders-instruction p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* Smooth fade when switching tabs */
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

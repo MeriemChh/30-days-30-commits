@@ -182,7 +182,7 @@
   }
 }
 .confirm-modal{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -191,6 +191,7 @@
     display: flex;
     justify-content: center;    
     align-items: center;
+    z-index: 2;
 }
 
 .receipt {
@@ -199,7 +200,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  
+
   padding: 2rem;
   width: 100%;
   max-width: 500px;

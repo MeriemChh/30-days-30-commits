@@ -37,7 +37,6 @@ export default function ProductModal({ product, onClose }) {
             <button className="btn-add-to-cart" onClick={handleAddToCart}>
               Add to Cart
             </button>
-            <button className="btn-order-now">Order Now</button>
           </div>
         </div>
       </div>

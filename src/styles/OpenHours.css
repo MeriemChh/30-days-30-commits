@@ -1,0 +1,114 @@
+.openhours {
+  position: relative;
+  padding: 80px 20px;
+  width: 100%;
+  background: linear-gradient(90deg, #f5e6d3, #f0d9b5);
+  font-family: "Cinzel Decorative", sans-serif;
+  overflow: hidden;
+}
+
+.openhours-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.openhours-text h2 {
+  font-size: 2rem;
+  color: #3a1b07;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  
+}
+
+.hour-item {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: 14px 24px;
+  color: #3a1c0f;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(58, 27, 7, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hour-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(58, 27, 7, 0.15);
+}
+
+.quote {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #7a4a28;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+}
+
+.maps-btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #3a1c0f, #5c2c1f);
+  color: #f5e6d3;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.maps-btn:hover {
+  background: linear-gradient(135deg, #5c2c1f, #3a1c0f);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+}
+
+/* Floating icons for soft ambient motion */
+.floating-icon {
+  position: absolute;
+  font-size: 2rem;
+  color: #9b4a28;
+  opacity: 0.85;
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.mug-icon { top: 15%; left: 20%; animation-delay: 0s; }
+.clock-icon { top: 30%; right: 10%; animation-delay: 1s; }
+.star-icon { bottom: 20%; left: 12%; animation-delay: 2s; }
+.sun-icon { bottom: 10%; right: 15%; animation-delay: 2.5s; }
+
+@keyframes floaty {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@media (max-width: 768px) {
+  .hour-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .openhours-text h2 {
+    font-size: 1.6rem;
+  }
+}

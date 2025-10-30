@@ -1,23 +1,19 @@
 .login {
   font-family: "Cormorant Garamond";
   position: relative;
+  background-color: #fffaed;
   width: 100%;
   min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-image: url("/background.jpg");
   background-size: cover;     
   background-position: center; 
 
 }
 
-@media (min-width: 768px) {
-  .login {
-    background-image: url("/background-desktop.jpg");
-  }
-}
+
 
 .login-box {
   position: fixed;

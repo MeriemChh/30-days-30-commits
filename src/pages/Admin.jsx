@@ -9,6 +9,7 @@ import Create from "../components/Create";
 import Orders from "../components/Orders";
 
 
+
 export default function Admin() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -62,11 +63,12 @@ if (loading) {
       {sidebarOpen && <div className="overlay" onClick={() => setSidebarOpen(false)} />}
 
       <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+
         <nav>
           <button onClick={() => navigate("/")} className="nav-link">Home</button>
-          <button onClick={() => setView("dashboard")} className="nav-link">Dashboard</button>
-          <button onClick={() => setView("create")} className="nav-link">Create</button>
           <button onClick={() => setView("orders")} className="nav-link">Orders</button>
+          <button onClick={() => setView("dashboard")} className="nav-link">Products</button>
+          <button onClick={() => setView("create")} className="nav-link">Create</button>
         </nav>
         
         <nav>

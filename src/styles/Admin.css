@@ -15,10 +15,9 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  background: #ffffff;
+  background-color: #fff8f1;
   width: 240px;
   padding: 30px;
-  border-right: 1px solid #e5e7eb;
   position: relative;
   z-index: 100;
 }
@@ -101,7 +100,17 @@
 
   .sidebar.open {
     left: 0;
+
   }
+.main{
+  left: 0;
+  transition: left 0.3s ease;
+}
+  
+.sidebar.open + .main {
+  left: 240px;
+
+}
 
   .overlay {
     display: block;

@@ -4,6 +4,9 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -31,6 +34,9 @@ function Login() {
 
   return (
     <div className="login">
+              <div className="back">
+                  <button onClick={() => navigate("/")} className="btn-back"> <FaArrowAltCircleLeft/></button> 
+              </div>
       <div className="login-box">
         <form onSubmit={handleLogin} className="login-form">
           <input

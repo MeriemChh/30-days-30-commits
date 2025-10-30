@@ -28,12 +28,11 @@ export default function Header() {
 
         <div className="nav">
         <ul className="navbar">
-          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">Our Menu</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#contact">Contact Us</a></li>
           <li onClick={() => navigate("/admin")}>Login</li>
         </ul>
-
 
           <div className="menu" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -41,7 +40,7 @@ export default function Header() {
         </div>
 
         <div className="logo">
-          <h6>logo</h6>
+          <a className="logo-logo" href="#hero">Masagran</a>
         </div>
 
         <div onClick={toggleCart} className="cart">
